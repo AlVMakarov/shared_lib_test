@@ -5,11 +5,27 @@
 
 using namespace std;
 
+enum operations
+{
+    pplus,
+    pminus
+};
+
+operations def_oper(string oper)
+{
+    if (oper == "+")
+        return pplus;
+    else
+        return pminus;
+}
+
 int main()
 {
     int n, m;
+    string oper;
     cin >> n;
     cin >> m;
+    cin >> oper;
 
     vector<vector<float>> m1(n, vector<float>(m));
     vector<vector<float>> m2(n, vector<float>(m));
@@ -29,26 +45,27 @@ int main()
             cin >> m2[i][j];
         }
     }
-    vector<vector<float>> res1, res2;
 
-    res1 = operAdd(n, m, m1, m2);
-    res2 = operSub(n, m, m1, m2);
+    vector<vector<float>> res;
 
-    for (int i = 0; i < n; i++)
+    switch (def_oper(oper))
     {
-        for (int j = 0; j < m; j++)
-        {
-            cout << res1[i][j] << " ";
-        }
-        cout << endl;
+    case pplus:
+        res = operAdd(n, m, m1, m2);
+        break;
+    case pminus:
+        res = operSub(n, m, m1, m2);
+
+    default:
+
+        break;
     }
-    cout << endl;
 
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
-            cout << res2[i][j] << " ";
+            cout << res[i][j] << " ";
         }
         cout << endl;
     }
