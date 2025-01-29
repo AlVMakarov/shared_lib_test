@@ -1,7 +1,7 @@
 CXX=g++
 
 all: libmatrixOperation.so matrixProgram.o
-	$(CXX) -o matrixProgram  matrixProgram.o -L. -lmatrixOperation
+	$(CXX) -o matrixProgram  matrixProgram.o -L. -lmatrixOperation 
 
 libmatrixOperation.so: matrixOperation.cpp
 	$(CXX) -fPIC -c matrixOperation.cpp -o matrixOperation.o
@@ -9,6 +9,3 @@ libmatrixOperation.so: matrixOperation.cpp
 
 clean:
 	$ rm *.o *.so
-
-exp:
-	$ export LD_LIBRARY_PATH=.
